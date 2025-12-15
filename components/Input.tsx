@@ -16,7 +16,7 @@ const Input:React.FC<InputProps> = ({
     type
 }) => {
     return (
-        <div className="relative mt-6">
+        <div className="relative mt-1">
             <input
             value={value}
             id={id}
