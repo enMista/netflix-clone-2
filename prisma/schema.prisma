@@ -5,13 +5,12 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "mongodb"
-  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -56,21 +55,21 @@ model Session {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model VerificationToken {'
+model VerificationToken {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   identifier String
   token String @unique
   expires DateTime 
 
   @@unique([identifier, token])
-  }
+}
 
-  model Movie {
-    id String @id @default(auto()) @map("_id") @db.ObjectId
-    title String
-    description String
-    videoUrl String
-    thumbnailUrl String
-    genre String
-    duration String
-  }
+model Movie {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  description String
+  videoUrl String
+  thumbnailUrl String
+  genre String
+  duration String
+}
